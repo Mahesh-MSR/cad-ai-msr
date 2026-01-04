@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* BACKGROUND GRID */
+body {
+  background: #020617;
+  color: #e5e7eb;
+  overflow-x: hidden;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 60px 20px;
+  animation: fadeDown 1s ease;
+}
+
+header h1 {
+  font-size: 3rem;
+  color: #38bdf8;
+}
+
+header h1 span {
+  color: #22c55e;
+}
+
+header p {
+  opacity: 0.8;
+}
+
+/* MAIN CARD */
+main {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.chat-card {
+  width: 100%;
+  max-width: 650px;
+  background: rgba(15,23,42,0.9);
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(56,189,248,0.2);
+  backdrop-filter: blur(10px);
+  animation: fadeUp 1.2s ease;
+}
+
+/* CHAT HEADER */
+.chat-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #22c55e;
+}
+
+/* MESSAGES */
+.messages {
+  height: 300px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.ai-msg, .user-msg {
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  animation: fadeIn 0.4s ease;
+}
+
+.ai-msg {
+  background: #020617;
+}
+
+.user-msg {
+  background: #1e293b;
+  align-self: flex-end;
+}
+
+/* INPUT */
+.input-area {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #38bdf8, #22c55e);
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+
+/* ANIMATIONS */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

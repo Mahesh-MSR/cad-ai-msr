@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MechCAD AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg-grid"></div>
+
+<!-- HEADER -->
+<header>
+  <h1>MechCAD <span>AI</span></h1>
+  <p>Mechanical CAD & Design Intelligence</p>
+</header>
+
+<!-- CHAT CARD -->
+<main>
+  <div class="chat-card">
+    <div class="chat-header">
+      <h2>Design Assistant</h2>
+      <span class="status-dot"></span>
+    </div>
+
+    <div id="messages" class="messages">
+      <div class="ai-msg">
+        👋 Ask me about CAD, GD&T, materials, or manufacturing.
+      </div>
+    </div>
+
+    <div class="input-area">
+      <input id="userInput" type="text"
+        placeholder="e.g. Explain GD&T flatness" />
+      <button onclick="sendMessage()">Ask</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Built by Mahesh • Mechanical CAD AI
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
