@@ -1,36 +1,48 @@
 console.log("script.js loaded");
 
-const BACKEND_URL = "https://mechcad-ai-backend.maheravi2006.workers.dev";
+function addMessage(sender, text) {
+  const messages = document.getElementById("messages");
+  const div = document.createElement("div");
+
+  div.className = sender === "user" ? "user-msg" : "ai-msg";
+  div.textContent = text;
+
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
 
 async function sendMessage() {
   console.log("sendMessage triggered");
 
   const input = document.getElementById("userInput");
-  const messages = document.getElementById("messages");
-  const text = input.value.trim();
+  const message = input.value.trim();
 
-  if (!text) return;
+  if (!message) return;
 
-  messages.innerHTML += `<div class="user-msg">${text}</div>`;
+  addMessage("user", message);
   input.value = "";
 
-  const loading = document.createElement("div");
-  loading.className = "ai-msg";
-  loading.textContent = "AI is thinking...";
-  messages.appendChild(loading);
-
   try {
-    const response = await fetch(BACKEND_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: text })
-    });
+    const response = await fetch(
+      "https://mechcad-ai-backend.maheravi2006.workers.dev/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ prompt: message })
+      }
+    );
 
     const data = await response.json();
-    loading.textContent = data.reply || "No response";
 
-  } catch (e) {
-    loading.textContent = "Backend connection failed";
-    console.error(e);
+    if (data.reply) {
+      addMessage("ai", data.reply);
+    } else {
+      addMessage("ai", "No response from AI");
+    }
+  } catch (error) {
+    console.error(error);
+    addMessage("ai", "Backend connection failed");
   }
 }
