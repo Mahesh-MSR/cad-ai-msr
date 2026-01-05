@@ -15,14 +15,19 @@ async function sendMessage() {
   console.log("sendMessage triggered");
 
   const input = document.getElementById("userInput");
-  const message = input.value.trim();
+  const userText = input.value.trim();
 
-  if (!message) return;
+  if (!userText) return;
 
-  addMessage("user", message);
+  // Show user message
+  addMessage("user", userText);
+
+  // Clear input
   input.value = "";
 
   try {
+    console.log("Sending prompt:", userText);
+
     const response = await fetch(
       "https://mechcad-ai-backend.maheravi2006.workers.dev/",
       {
@@ -30,19 +35,23 @@ async function sendMessage() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ prompt: message })
+        body: JSON.stringify({
+          prompt: userText   // 🔥 THIS MUST BE userText
+        })
       }
     );
 
     const data = await response.json();
+
+    console.log("AI response:", data);
 
     if (data.reply) {
       addMessage("ai", data.reply);
     } else {
       addMessage("ai", "No response from AI");
     }
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     addMessage("ai", "Backend connection failed");
   }
 }
